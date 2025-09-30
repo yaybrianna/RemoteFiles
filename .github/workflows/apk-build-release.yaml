@@ -31,5 +31,5 @@ jobs:
       - name: Clean and Build Flutter Apk
         run: |
           flutter clean
-          flutter build apk --no-codesign --release
+          flutter build apk --release
 
