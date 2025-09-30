@@ -1,0 +1,35 @@
+name: Build Android Apk
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 2.2.3
+
+      - name: Get Flutter Dependencies
+        run: flutter pub get
+
+      - name: Upgrade Dependencies
+        run: flutter pub upgrade
+
+      - name: Clean and Build Flutter Apk
+        run: |
+          flutter clean
+          flutter build apk --release
+
